@@ -388,7 +388,7 @@ ConstructNetwork <- function(
     consensusTOMFilePattern = "ConsensusTOM-block.%b.rda", ...)
 
   # rename consensusTOM file:
-  file.rename('ConsensusTOM-block.1.rda', paste0('TOM/', gsub(' ', '_',group_name), '_ConsensusTOM-block.1.rda'))
+  file.rename('ConsensusTOM-block.1.rda', paste0(tom_outdir, '/', gsub(' ', '_',group_name), '_ConsensusTOM-block.1.rda'))
 
   # add network parameters to the Seurat object:
 
@@ -416,7 +416,7 @@ ConstructNetwork <- function(
   seurat_obj <- SetWGCNAParams(seurat_obj, params)
 
   # append working directory to the TOM file so it has the full path:
-  net$TOMFiles <- paste0(getwd(), '/TOM/', group_name, '_', net$TOMFiles)
+  net$TOMFiles <- paste0(getwd(), '/', tom_outdir, '/', group_name, '_', net$TOMFiles)
 
   # add network to seurat obj
   seurat_obj <- SetNetworkData(seurat_obj, net)
